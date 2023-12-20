@@ -277,6 +277,7 @@
     "lists.typeHelp": "Juliset listat ovat avoimia kaikille tilaajille ja niiden nimi voi esiintyä julkisilla sivuilla, kuten tilaustenhallintasivustolla.",
     "lists.types.private": "Yksityinen",
     "lists.types.public": "Julkinen",
+    "lists.errorPreparingQuery": "Virhe valmistellessa listat kyselyä: {error}",
     "logs.title": "Lokit",
     "maintenance.help": "Joidenkin toimintojen suorittaminen voi kestää jonkin aikaa riippuen tiedon määrästä.",
     "maintenance.maintenance.unconfirmedOptins": "Vahvistamattomat tilaukset",

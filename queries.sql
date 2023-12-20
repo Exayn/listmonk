@@ -415,28 +415,21 @@ SELECT * FROM lists WHERE (CASE WHEN $1 = '' THEN 1=1 ELSE type=$1::list_type EN
     ORDER BY CASE WHEN $2 = 'id' THEN id END, CASE WHEN $2 = 'name' THEN name END;
 
 -- name: query-lists
-WITH ls AS (
-	SELECT COUNT(*) OVER () AS total, lists.* FROM lists WHERE
-    CASE
-        WHEN $1 > 0 THEN id = $1
-        WHEN $2 != '' THEN uuid = $2::UUID
-        WHEN $3 != '' THEN to_tsvector(name) @@ to_tsquery ($3)
-        ELSE TRUE
-    END
-    AND ($4 = '' OR type = $4::list_type)
-    AND ($5 = '' OR optin = $5::list_optin)
-    AND (CARDINALITY($6::VARCHAR(100)[]) = 0 OR $6 <@ tags)
-    OFFSET $7 LIMIT (CASE WHEN $8 < 1 THEN NULL ELSE $8 END)
-),
-statuses AS (
-    SELECT
-        list_id,
-        COALESCE(JSONB_OBJECT_AGG(status, subscriber_count) FILTER (WHERE status IS NOT NULL), '{}') AS subscriber_statuses
-    FROM mat_list_subscriber_stats
-    GROUP BY list_id
-)
-SELECT ls.*, COALESCE(ss.subscriber_statuses, '{}') AS subscriber_statuses
-    FROM ls LEFT JOIN statuses ss ON (ls.id = ss.list_id) ORDER BY %order%;
+-- raw: true
+-- Unprepared statement for issuring arbitrary WHERE conditions for
+-- searching lists. While the results are sliced using offset+limit,
+-- there's a COUNT() OVER() that still returns the total result count
+-- for pagination in the frontend, albeit being a field that'll repeat
+-- with every resultant row.
+-- %s = arbitrary expression, %s = order by field, %s = order direction
+SELECT lists.* FROM lists
+    %query%
+    ORDER BY %order% OFFSET $1 LIMIT (CASE WHEN $2 < 1 THEN NULL ELSE $2 END);
+
+-- name: query-lists-count
+-- Replica of query-subscribers for obtaining the results count.
+SELECT COUNT(*) AS total FROM lists
+    %s;
 
 -- name: get-lists-by-optin
 -- Can have a list of IDs or a list of UUIDs.

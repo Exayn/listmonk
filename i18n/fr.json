@@ -277,6 +277,7 @@
     "lists.typeHelp": "Les listes publiques sont libres d'accès en abonnement et leurs noms sont visibles sur les pages publiques telles que la page de gestion des abonnements.",
     "lists.types.private": "Privée",
     "lists.types.public": "Publique",
+    "lists.errorPreparingQuery": "Erreur lors de la préparation de la requête de liste : {error}",
     "logs.title": "Journalisations",
     "maintenance.help": "Certaines actions peuvent prendre un certain temps, en fonction de la quantité de données.",
     "maintenance.maintenance.unconfirmedOptins": "Abonnements sélectionnés non-confirmés",

@@ -277,6 +277,7 @@
     "lists.typeHelp": "Erişime açık listelere her yerden erişilebilirdir ve üye olunabilir. Ayrıca üyelik yönetim sayfaları internet üzerinden erişime açık yerlerdir.",
     "lists.types.private": "Kişisel",
     "lists.types.public": "Erişime açık",
+    "lists.errorPreparingQuery": "Liste sorgusu hazırlarken hata oluştu: {error}",
     "logs.title": "Günlükler",
     "maintenance.help": "Veri miktarına bağlı olarak bazı eylemlerin tamamlanması biraz zaman alabilir.",
     "maintenance.maintenance.unconfirmedOptins": "Onaylanmamış katılım abonelikleri",

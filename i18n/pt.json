@@ -276,6 +276,7 @@
     "lists.typeHelp": "Listas públicas estão abertas para toda a gente se subscrever e os seus nomes podem aparecer em páginas públicas, como a página de gestão de subscrições.",
     "lists.types.private": "Privado",
     "lists.types.public": "Público",
+    "lists.errorPreparingQuery": "Erro ao preparar query dos lista: {error}",
     "logs.title": "Logs (Histórico)",
     "maintenance.help": "Algumas ações podem demorar algum tempo, dependendo da quantidade de dados.",
     "maintenance.maintenance.unconfirmedOptins": "Adesão a subscrições não confirmadas",

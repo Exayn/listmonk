@@ -276,6 +276,7 @@
     "lists.typeHelp": "Veřejné seznamy jsou celosvětově přístupné k odběru a jejich názvy se mohou objevit na veřejných stránkách, jako je stránka pro správu odběrů.",
     "lists.types.private": "Soukromý",
     "lists.types.public": "Veřejný",
+    "lists.errorPreparingQuery": "Chyba při přípravě dotazu na seznam: {error}",
     "logs.title": "Protokoly",
     "maintenance.help": "Některé operace mohou trvat déle v závislosti na množství dat.",
     "maintenance.maintenance.unconfirmedOptins": "Nepotvrzené opt-in přihlášení",

@@ -276,6 +276,7 @@
     "lists.typeHelp": "Gall unrhyw un yn y byd danysgrifio i restrau cyhoeddus a gall eu henwau ymddangos ar dudalennau cyhoeddus fel y dudalen rheoli tanysgrifiadau.",
     "lists.types.private": "Preifat",
     "lists.types.public": "Cyhoeddus",
+    "lists.errorPreparingQuery": "Gwall wrth baratoi ymholiad rhestr: {error}",
     "logs.title": "Logos",
     "maintenance.help": "Efallai y bydd yn cymryd amser i gwblhau rhai gweithredoedd yn dibynnu ar nifer y data.",
     "maintenance.maintenance.unconfirmedOptins": "Tanysgrifiadau optio i mewn sydd heb eu cadarnhau",

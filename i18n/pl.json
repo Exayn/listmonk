@@ -276,6 +276,7 @@
     "lists.typeHelp": "Publiczne listy są otwarte do świata i każdy może się zapisać. Nazwy są widoczne np. na stronie do zarządzania subskrypcją.",
     "lists.types.private": "Prywatna",
     "lists.types.public": "Publiczna",
+    "lists.errorPreparingQuery": "Błąd przygotowywania zapytania o listy: {error}",
     "logs.title": "Logi",
     "maintenance.help": "Niektóre akcje mogą zająć dłużej, w zależności od ilości danych.",
     "maintenance.maintenance.unconfirmedOptins": "Niepotwierdzone subskrypcje opt-in.",

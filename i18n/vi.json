@@ -277,6 +277,7 @@
     "lists.typeHelp": "Danh sách công khai được mở để mọi người đăng ký và tên của họ có thể xuất hiện trên các trang công khai như trang quản lý đăng ký.",
     "lists.types.private": "Riêng tư",
     "lists.types.public": "Công cộng",
+    "lists.errorPreparingQuery": "Lỗi khi chuẩn bị truy vấn danh sách: {error}",
     "logs.title": "Nhật ký",
     "maintenance.help": "Một số hoạt động có thể mất một thời gian để hoàn thành tùy thuộc vào lượng dữ liệu.",
     "maintenance.maintenance.unconfirmedOptins": "Đăng ký chưa xác nhận",

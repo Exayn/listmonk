@@ -276,6 +276,7 @@
     "lists.typeHelp": "A nyilvános listákra mindenki feliratkozhat, és nevük megjelenhet nyilvános oldalakon, például az tagságkezelő oldalon.",
     "lists.types.private": "Privát",
     "lists.types.public": "Nyilvános",
+    "lists.errorPreparingQuery": "Hiba a lekérdezés előkészítésekor: {error}",
     "logs.title": "Napló",
     "maintenance.help": "Az adatmennyiségtől függően egyes műveletek több időt is igénybe vehetnek.",
     "maintenance.maintenance.unconfirmedOptins": "Megerősítésre vár",

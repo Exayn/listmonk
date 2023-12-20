@@ -276,6 +276,7 @@
     "lists.typeHelp": "Verejné zoznamy sú verejné prístupné k odberu a ich názvy sa môžu zverejniť napr. na stránke na správu odberov.",
     "lists.types.private": "Súkromný",
     "lists.types.public": "Verejný",
+    "lists.errorPreparingQuery": "Chyba pri príprave dotazu na zoznam: {error}",
     "logs.title": "Logy",
     "maintenance.help": "Niektoré operácie môžu trvať dlhšie v závislosti na množstve dáť.",
     "maintenance.maintenance.unconfirmedOptins": "Nepotvrdené opt-in prihlásenia",

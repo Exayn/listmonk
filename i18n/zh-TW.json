@@ -277,6 +277,7 @@
     "lists.typeHelp": "公開訂閱清單向全世界開放訂閱，其名稱可能會出現在訂閱管理頁面等公開頁面上。",
     "lists.types.private": "不公開的",
     "lists.types.public": "公開",
+    "lists.errorPreparingQuery": "準備列表查詢時出錯：{error}",
     "logs.title": "日誌",
     "maintenance.help": "某些操作可能需要一段時間才能完成，具體取決於資料量。",
     "maintenance.maintenance.unconfirmedOptins": "尚未確認的訂閱",

@@ -276,6 +276,7 @@
     "lists.typeHelp": "Öffentliche Listen können von allen abonniert werden. Die Namen der Listen könnten auf einer öffentlichen Seite, wie z.B. der Seite für die Abonnentenverwaltung erscheinen.",
     "lists.types.private": "Privat",
     "lists.types.public": "Öffentlich",
+    "lists.errorPreparingQuery": "Fehler beim Vorbereiten der Listenabfrage: {error}",
     "logs.title": "Logs",
     "maintenance.help": "Je nach Datenmenge kann es eine Weile dauern, bis einige Aktionen abgeschlossen sind.",
     "maintenance.maintenance.unconfirmedOptins": "Unbestätigte Opt-in-Abonnements",

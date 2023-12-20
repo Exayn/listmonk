@@ -101,7 +101,8 @@ dev-docker: build-dev-docker ## Build and spawns docker containers for the entir
 # Run the backend in docker-dev mode. The frontend assets in dev mode are loaded from disk from frontend/dist.
 .PHONY: run-backend-docker
 run-backend-docker:
-	CGO_ENABLED=0 go run -ldflags="-s -w -X 'main.buildString=${BUILDSTR}' -X 'main.versionString=${VERSION}' -X 'main.frontendDir=frontend/dist'" cmd/*.go --config=dev/config.toml
+	yes | CGO_ENABLED=0 go run -ldflags="-s -w -X 'main.buildString=${BUILDSTR}' -X 'main.versionString=${VERSION}' -X 'main.frontendDir=frontend/dist'" cmd/*.go  --install --config=dev/config.toml; \
+	CGO_ENABLED=0 go run -ldflags="-s -w -X 'main.buildString=${BUILDSTR}' -X 'main.versionString=${VERSION}' -X 'main.frontendDir=frontend/dist'" cmd/*.go  --config=dev/config.toml
 
 # Tear down the complete local development docker suite.
 .PHONY: rm-dev-docker

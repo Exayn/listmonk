@@ -276,6 +276,7 @@
     "lists.typeHelp": "公共列表向全世界开放订阅，其名称可能会出现在订阅管理页面等公共页面上。",
     "lists.types.private": "私人的",
     "lists.types.public": "公开",
+    "lists.errorPreparingQuery": "准备列表查询时出错：{error}",
     "logs.title": "日志",
     "maintenance.help": "根据数据量，某些操作可能需要一段时间才能完成。",
     "maintenance.maintenance.unconfirmedOptins": "未经确认的选择加入订阅",

@@ -277,6 +277,7 @@
     "lists.types.private": "സ്വകാര്യം",
     "lists.types.public": "പൊതു",
     "logs.title": "ലോഗുകൾ",
+    "lists.errorPreparingQuery": "പട്ടികയുടെ ചോദ്യം തയാറാക്കുന്നതിൽ പരാജയപ്പെട്ടു: {error}",
     "maintenance.help": "ഡാറ്റയുടെ അളവ് അനുസരിച്ച് ചില പ്രവർത്തനങ്ങൾ പൂർത്തിയാക്കാൻ കുറച്ച് സമയമെടുത്തേക്കാം.",
     "maintenance.maintenance.unconfirmedOptins": "സ്ഥിരീകരിക്കാത്ത ഓപ്റ്റ്-ഇൻ വരിക്കാർ",
     "maintenance.olderThan": "അതിലും പഴയ",

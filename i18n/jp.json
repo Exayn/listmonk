@@ -277,6 +277,7 @@
     "lists.typeHelp": "公開リストでは世界中から加入することができ、加入者の名前はサブスクリプション管理ページなどの公開ページに表示されることがあります。",
     "lists.types.private": "プライベート",
     "lists.types.public": "パブリック",
+    "lists.errorPreparingQuery": "リスト照会準備エラー: {error}",
     "logs.title": "ログ",
     "maintenance.help": "データ量によりアクション完了するまでの時間が変わります。",
     "maintenance.maintenance.unconfirmedOptins": "未確認オプトインサブスクリプション",

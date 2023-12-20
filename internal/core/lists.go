@@ -1,7 +1,11 @@
 package core
 
 import (
+	"context"
+	"database/sql"
+	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/gofrs/uuid/v5"
 	"github.com/knadh/listmonk/models"
@@ -36,38 +40,50 @@ func (c *Core) GetLists(typ string) ([]models.List, error) {
 
 // QueryLists gets multiple lists based on multiple query params. Along with the  paginated and sliced
 // results, the total number of lists in the DB is returned.
-func (c *Core) QueryLists(searchStr, typ, optin string, tags []string, orderBy, order string, offset, limit int) ([]models.List, int, error) {
-	_ = c.refreshCache(matListSubStats, false)
-
-	if tags == nil {
-		tags = []string{}
+func (c *Core) QueryLists(query, orderBy, order string, offset, limit int) ([]models.List, int, error) {
+	// There's an arbitrary query condition.
+	cond := ""
+	if query != "" {
+		cond = " WHERE " + query
 	}
 
-	var (
-		out            = []models.List{}
-		queryStr, stmt = makeSearchQuery(searchStr, orderBy, order, c.q.QueryLists, listQuerySortFields)
-	)
-	if err := c.db.Select(&out, stmt, 0, "", queryStr, typ, optin, pq.StringArray(tags), offset, limit); err != nil {
-		c.log.Printf("error fetching lists: %v", err)
+	// Sort params.
+	if !strSliceContains(orderBy, subQuerySortFields) {
+		orderBy = "lists.id"
+	}
+	if order != SortAsc && order != SortDesc {
+		order = SortDesc
+	}
+
+	// Create a readonly transaction that just does COUNT() to obtain the count of results
+	// and to ensure that the arbitrary query is indeed readonly.
+	stmt := fmt.Sprintf(c.q.QueryListsCount, cond)
+	tx, err := c.db.BeginTxx(context.Background(), &sql.TxOptions{ReadOnly: true})
+	if err != nil {
+		c.log.Printf("error preparing subscriber query: %v", err)
+		return nil, 0, echo.NewHTTPError(http.StatusBadRequest, c.i18n.Ts("lists.errorPreparingQuery", "error", pqErrMsg(err)))
+	}
+	defer tx.Rollback()
+
+	// Execute the readonly query and get the count of results.
+	total := 0
+	if err := tx.Get(&total, stmt); err != nil {
 		return nil, 0, echo.NewHTTPError(http.StatusInternalServerError,
 			c.i18n.Ts("globals.messages.errorFetching", "name", "{globals.terms.lists}", "error", pqErrMsg(err)))
 	}
 
-	total := 0
-	if len(out) > 0 {
-		total = out[0].Total
+	// No results.
+	if total == 0 {
+		return []models.List{}, 0, nil
+	}
 
-		// Replace null tags.
-		for i, l := range out {
-			if l.Tags == nil {
-				out[i].Tags = []string{}
-			}
-
-			// Total counts.
-			for _, c := range l.SubscriberCounts {
-				out[i].SubscriberCount += c
-			}
-		}
+	// Run the query again and fetch the actual data. stmt is the raw SQL query.
+	var out []models.List
+	stmt = strings.ReplaceAll(c.q.QueryLists, "%query%", cond)
+	stmt = strings.ReplaceAll(stmt, "%order%", orderBy+" "+order)
+	if err := tx.Select(&out, stmt, offset, limit); err != nil {
+		return nil, 0, echo.NewHTTPError(http.StatusInternalServerError,
+			c.i18n.Ts("globals.messages.errorFetching", "name", "{globals.terms.lists}", "error", pqErrMsg(err)))
 	}
 
 	return out, total, nil
@@ -75,14 +91,19 @@ func (c *Core) QueryLists(searchStr, typ, optin string, tags []string, orderBy, 
 
 // GetList gets a list by its ID or UUID.
 func (c *Core) GetList(id int, uuid string) (models.List, error) {
-	var uu interface{}
-	if uuid != "" {
-		uu = uuid
+	tx, err := c.db.BeginTxx(context.Background(), &sql.TxOptions{ReadOnly: true})
+	if err != nil {
+		c.log.Printf("error preparing subscriber query: %v", err)
+		return models.List{}, echo.NewHTTPError(http.StatusBadRequest, c.i18n.Ts("lists.errorPreparingQuery", "error", pqErrMsg(err)))
 	}
 
+	orderBy := "lists.id"
+	order := SortDesc
+
 	var res []models.List
-	queryStr, stmt := makeSearchQuery("", "", "", c.q.QueryLists, nil)
-	if err := c.db.Select(&res, stmt, id, uu, queryStr, "", "", pq.StringArray{}, 0, 1); err != nil {
+	stmt := strings.ReplaceAll(c.q.QueryLists, "%query%", "")
+	stmt = strings.ReplaceAll(stmt, "%order%", orderBy+" "+order)
+	if err := tx.Select(&res, stmt, 0, 1); err != nil {
 		c.log.Printf("error fetching lists: %v", err)
 		return models.List{}, echo.NewHTTPError(http.StatusInternalServerError,
 			c.i18n.Ts("globals.messages.errorFetching", "name", "{globals.terms.lists}", "error", pqErrMsg(err)))

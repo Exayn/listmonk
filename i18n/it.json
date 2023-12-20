@@ -276,6 +276,7 @@
     "lists.typeHelp": "Le liste pubbliche sono libere d'accesso in abbonamento e i loro nomi sono visibili sulle pagine pubbliche come ad esempio la pagina della gestione degli abbonamenti.",
     "lists.types.private": "Privata",
     "lists.types.public": "Pubblico",
+    "lists.errorPreparingQuery": "Errore durante la preparazione della richiesta di liste: {error}",
     "logs.title": "Log",
     "maintenance.help": "Alcune azioni possono impiegare un po' di tempo dovuto alla quantità di dati da processare.",
     "maintenance.maintenance.unconfirmedOptins": "Iscrizioni `opt-in` da confermare",

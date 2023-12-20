@@ -277,6 +277,7 @@
     "lists.typeHelp": "Listele publice sunt deschise lumii pentru a se abona și numele lor pot apărea pe pagini publice, cum ar fi pagina de gestionare a abonamentelor.",
     "lists.types.private": "Privat",
     "lists.types.public": "Public",
+    "lists.errorPreparingQuery": "Eroare la pregătirea interogării listele: {error}",
     "logs.title": "Loguri",
     "maintenance.help": "Unele acțiuni pot dura un timp pentru a finaliza în funcție de cantitatea de date.",
     "maintenance.maintenance.unconfirmedOptins": "Abonări neconfirmate de opt-in",

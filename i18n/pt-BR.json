@@ -276,6 +276,7 @@
     "lists.typeHelp": "Listas públicas estão abertas ao mundo para se inscrever e seus nomes podem aparecer em páginas públicas, como na página de gerenciamento de inscrições.",
     "lists.types.private": "Privada",
     "lists.types.public": "Pública",
+    "lists.errorPreparingQuery": "Erro ao preparar consulta de lista: {error}",
     "logs.title": "Logs",
     "maintenance.help": "Algumas ações podem levar um tempo a depender da quantidade de dados.",
     "maintenance.maintenance.unconfirmedOptins": "Assinaturas opt-in não confirmadas",

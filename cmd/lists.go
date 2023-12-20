@@ -3,7 +3,6 @@ package main
 import (
 	"net/http"
 	"strconv"
-	"strings"
 
 	"github.com/knadh/listmonk/models"
 	"github.com/labstack/echo/v4"
@@ -15,11 +14,8 @@ func handleGetLists(c echo.Context) error {
 		app = c.Get("app").(*App)
 		pg  = app.paginator.NewFromURL(c.Request().URL.Query())
 
-		query      = strings.TrimSpace(c.FormValue("query"))
-		tags       = c.QueryParams()["tag"]
+		query      = sanitizeSQLExp(c.FormValue("query"))
 		orderBy    = c.FormValue("order_by")
-		typ        = c.FormValue("type")
-		optin      = c.FormValue("optin")
 		order      = c.FormValue("order")
 		minimal, _ = strconv.ParseBool(c.FormValue("minimal"))
 		listID, _  = strconv.Atoi(c.Param("id"))
@@ -61,7 +57,7 @@ func handleGetLists(c echo.Context) error {
 	}
 
 	// Full list query.
-	res, total, err := app.core.QueryLists(query, typ, optin, tags, orderBy, order, pg.Offset, pg.Limit)
+	res, total, err := app.core.QueryLists(query, orderBy, order, pg.Offset, pg.Limit)
 	if err != nil {
 		return err
 	}
