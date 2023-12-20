@@ -31,5 +31,5 @@ COPY --from=builder /app/listmonk .
 
 COPY config.toml.sample config.toml
 COPY config-demo.toml .
-CMD ["./listmonk"]
+CMD sleep 5 && ./listmonk
 EXPOSE 9000
