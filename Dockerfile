@@ -29,7 +29,6 @@ WORKDIR /listmonk
 
 COPY --from=builder /app/listmonk .
 
-COPY config.toml.sample config.toml
-COPY config-demo.toml .
-CMD sleep 5 && ./listmonk
+ENTRYPOINT ["sh", "-c", "sleep 5 && ./listmonk"]
+
 EXPOSE 9000
