@@ -150,12 +150,8 @@ func initFlags() {
 func initConfigFiles(files []string, ko *koanf.Koanf) {
 	for _, f := range files {
 		lo.Printf("reading config: %s", f)
-		if err := ko.Load(file.Provider(f), toml.Parser()); err != nil {
-			if os.IsNotExist(err) {
-				lo.Fatal("config file not found. If there isn't one yet, run --new-config to generate one.")
-			}
-			lo.Fatalf("error loading config from file: %v.", err)
-		}
+		ko.Load(file.Provider(f), toml.Parser())
+		// Ignore errors for now.
 	}
 }
 
