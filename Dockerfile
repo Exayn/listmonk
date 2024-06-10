@@ -1,12 +1,10 @@
-FROM node:19-alpine as front-builder
+FROM node:20-alpine as front-builder
 
 RUN apk add --no-cache alpine-sdk
 
-WORKDIR /app
 ADD . /app
 
 WORKDIR /app/frontend
-
 RUN yarn install
 
 WORKDIR /app
